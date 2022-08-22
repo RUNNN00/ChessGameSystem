@@ -21,15 +21,17 @@ public class Program {
 		while (!chessMatch.getCheckMate()) {
 			try {
 				UI.clearScreen();
+				UI.printWelcome();
+				
 				UI.printMatch(chessMatch, captured);
-				System.out.println();
-				System.out.print("Source: ");
+				System.out.print("\nSource: ");
 				ChessPosition source = UI.readChessPosition(scanner);
 				boolean[][] possibleMoves = chessMatch.possibleMoves(source);
+				
 				UI.clearScreen();
+				UI.printWelcome();
 				UI.printBoard(chessMatch.getPieces(), possibleMoves);
-				System.out.println();
-				System.out.print("target: ");
+				System.out.print("\ntarget: ");
 				ChessPosition target = UI.readChessPosition(scanner);
 
 				ChessPiece capturedPiece = chessMatch.performChessMove(source, target);

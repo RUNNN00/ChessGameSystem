@@ -50,6 +50,13 @@ public class UI {
 			throw new InputMismatchException("Error reading chessPosiion. Valid values are from a1 at h8.");
 		}
 	}
+	
+	public static void printWelcome() {
+		System.out.println("=======================");
+		System.out.println("===== CHESS GAME ======");
+		System.out.println("=======================");
+		System.out.println("by Ruan Azevedo\n");
+	}
 
 	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
 		printBoard(chessMatch.getPieces());
@@ -58,7 +65,14 @@ public class UI {
 		System.out.println();
 		System.out.println("Turn: " + chessMatch.getTurn());
 		if (!chessMatch.getCheckMate()) {
-			System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+			String color;
+			if (chessMatch.getCurrentPlayer() == Color.BLACK)
+				color = ANSI_YELLOW;
+			else
+				color = ANSI_WHITE;
+
+			System.out.println("Waiting player: " + color + chessMatch.getCurrentPlayer() + ANSI_RESET);
+
 			if (chessMatch.getCheck())
 				System.out.println(">>>>>>CHECK!");
 		} else {
@@ -75,7 +89,6 @@ public class UI {
 			}
 			System.out.println();
 		}
-
 		System.out.println("  a b c d e f g h");
 	}
 
@@ -87,7 +100,6 @@ public class UI {
 			}
 			System.out.println();
 		}
-
 		System.out.println("  a b c d e f g h");
 	}
 
